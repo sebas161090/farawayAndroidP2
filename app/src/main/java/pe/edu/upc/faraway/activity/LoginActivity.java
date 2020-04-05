@@ -14,8 +14,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import pe.edu.upc.faraway.R;
 import pe.edu.upc.faraway.bean.response.LoginRes;
 import pe.edu.upc.faraway.util.Constants;
+import pe.edu.upc.faraway.util.Loading;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -30,28 +32,28 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login);
 
         prefs = getSharedPreferences(Constants.PREFS, Context.MODE_PRIVATE);
 
         getSupportActionBar().hide();
 
         bindUI();
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String username = editTextUsername.getText().toString();
-                String password = editTextPassword.getText().toString();
-                prepareLogin(username, password);
-            }
-        });
+//        btnLogin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String username = editTextUsername.getText().toString();
+//                String password = editTextPassword.getText().toString();
+//                prepareLogin(username, password);
+//            }
+//        });
     }
 
     private void bindUI(){
-//        loading = Loading.init(this);
-//        editTextUsername = findViewById(R.id.editTxtUsername);
-//        editTextPassword = findViewById(R.id.editTxtPassword);
-//        btnLogin = findViewById(R.id.btnLogin);
+        loading = Loading.init(this);
+        editTextUsername = findViewById(R.id.editTxtUsername);
+        editTextPassword = findViewById(R.id.editTxtPassword);
+        btnLogin = findViewById(R.id.btnLogin);
     }
 
     private void prepareLogin(String username, String password){

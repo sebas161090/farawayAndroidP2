@@ -1,3 +1,85 @@
 <resources>
     <string name="app_name">faraway</string>
+
+    <!-- generales -->
+    <string name="input_placeholder">Ingrese</string>
+    <string name="content_description_logo">logo</string>
+
+    <string name="search_button">Buscar</string>
+    <string name="clear_button">Limpiar</string>
+
+    <!-- login-->
+    <string name="login_username">Usuario</string>
+    <string name="login_password">Contraseña</string>
+    <string name="login_button">Ingresar</string>
+    <string name="login_greeting">¡Hola!</string>
+    <string name="login_sub_greeting">Ingresa tu cuenta</string>
+    <string name="footer">© 2019 Todos los derechos reservados. Powered by Canvia</string>
+
+    <!-- acceptance-search -->
+    <string name="main_title">Aceptación</string>
+    <string name="sub_title_one">Datos de operación</string>
+    <string name="sub_title_two">Datos del aceptante</string>
+    <string name="sales_code">N° de proforma</string>
+    <string name="operation_date_from">Operación desde</string>
+    <string name="operation_date_to">Operación hasta</string>
+    <string name="placeholder_date">dd/mm/aaaa</string>
+    <string name="document_type">Tipo de documento</string>
+    <string name="document_number">N° de identidad</string>
+    <string name="spinner_prompt">Seleccione</string>
+
+    <!-- acceptance-operations - recycler_view -->
+    <string name="bills">Letras</string>
+    <string name="results">Resultados</string>
+    <string name="content_description_eye_view"></string>
+
+    <!-- acceptance-details -->
+    <string name="details_sales_code">Proforma N°</string>
+    <string name="data_drawer_title">Datos del Girador</string>
+    <string name="comercial_name_label">RAZÓN SOCIAL</string>
+    <string name="document_number_label">N° RUC</string>
+    <string name="address_label">DOMICILIO</string>
+
+    <string name="data_drawee_title">Datos del aceptante</string>
+    <string name="data_guarantee_title">Datos del aval</string>
+    <string name="drawee_title">Aceptante</string>
+    <string name="document_type_label">TIPO DOC. IDENTIDAD</string>
+    <string name="name_label">NOMBRES</string>
+    <string name="last_name_label">APELLIDOS</string>
+    <string name="place_label">LOCALIDAD</string>
+    <string name="email_label">CORREO ELECTRÓNICO</string>
+    <string name="phone_number_label">TELÉFONO</string>
+
+    <string name="special_clauses_title">Clausulas especiales</string>
+    <string name="more_data_title">Otros datos</string>
+    <string name="project_name_label">PROYECTO</string>
+    <string name="draw_date_label">FECHA DE GIRO</string>
+    <string name="draw_place_label">LUGAR DE GIRO</string>
+    <string name="reference_label">REF. GIRADOR</string>
+    <string name="bill_total_quantity_label">Cantidad de letras</string>
+    <string name="bill_total_amount_label">Importe total</string>
+    <string name="bill_total_amount_label_2">N° de letras</string>
+    <string name="due_date_label">F. vencimiento</string>
+    <string name="currency_amount_bill_label">Moneda e importe</string>
+
+    <string name="btn_signature_text">Firma electrónica</string>
+
+    <!-- acceptance-signatories-->
+    <string name="document_label">D.O.I</string>
+    <string name="status_label">Estado</string>
+    <string name="acceptance_list_label">Lista de aceptantes</string>
+    <string name="guarantees_list_label">Firma del aval</string>
+    <string name="content_description_fingerprint">fingerprint</string>
+    <string name="acceptance_register_btn">Registrar aceptación</string>
+
+    <!-- capture-morpho-->
+    <string name="device_not_detected">Ningún dispositivo detectado.</string>
+    <string name="open_ssl_path">No se puede leer el certificado de host.\nPor favor, compruebe que se haya copiado los keys en el directorio .\\sdcard\\keys.</string>
+    <string name="connection_fail">Por favor, compruebe que el dispositivo está conectado correctamente.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
 </resources>
