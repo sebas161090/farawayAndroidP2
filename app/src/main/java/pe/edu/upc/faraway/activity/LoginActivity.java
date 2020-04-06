@@ -15,9 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import pe.edu.upc.faraway.R;
+import pe.edu.upc.faraway.api.service.LoginService;
+import pe.edu.upc.faraway.bean.request.LoginReq;
 import pe.edu.upc.faraway.bean.response.LoginRes;
 import pe.edu.upc.faraway.util.Constants;
 import pe.edu.upc.faraway.util.Loading;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -39,14 +44,14 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         bindUI();
-//        btnLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String username = editTextUsername.getText().toString();
-//                String password = editTextPassword.getText().toString();
-//                prepareLogin(username, password);
-//            }
-//        });
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = editTextUsername.getText().toString();
+                String password = editTextPassword.getText().toString();
+                prepareLogin(username, password);
+            }
+        });
     }
 
     private void bindUI(){
@@ -68,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(String username, String password){
+        Log.i("login"  + username ,"password " + password);
 //        LoginService loginService = Api.getApi().create(LoginService.class);
 //        Call<LoginRes> login = loginService.login(new LoginReq(username, password));
 //        Loading.show(loading);
