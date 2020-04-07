@@ -2,6 +2,7 @@ package pe.edu.upc.faraway.activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -25,14 +26,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private ProgressDialog loading;
     private SharedPreferences prefs;
 
     //UI
     private EditText editTextUsername;
     private EditText editTextPassword;
-    private Button btnLogin;
+    private Button btnLogin, btnRegistro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                 prepareLogin(username, password);
             }
         });
+        btnRegistro.setOnClickListener(this);
     }
 
     private void bindUI(){
@@ -59,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextUsername = findViewById(R.id.editTxtUsername);
         editTextPassword = findViewById(R.id.editTxtPassword);
         btnLogin = findViewById(R.id.btnLogin);
+        btnRegistro = findViewById(R.id.btnRegistro);
     }
 
     private void prepareLogin(String username, String password){
@@ -108,5 +111,15 @@ public class LoginActivity extends AppCompatActivity {
 //        Intent intent = new Intent(this, AcceptanceSearchActivity.class);
 //        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 //        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.btnRegistro:
+                startActivity(new Intent(this, RegisterActivity.class));
+                break;
+        }
     }
 }
