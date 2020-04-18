@@ -19,6 +19,15 @@
     <!-- Registro-->
     <string name="register_greeting">Registro</string>
 
+    <!-- Producto Descripcion-->
+    <string name="product_description_title">Descripcion</string>
+    <string name="product_description_text">Este es el texto de la descripcion del producto texto de la descripcion del producto texto de la descripcion del producto</string>
+    <string name="price_product_title">Precio</string>
+    <string name="stock_product_title">Stock</string>
+    <string name="price_product">0.00 Soles</string>
+    <string name="stock_product">0 Unidades</string>
+    <string name="contact_number">Numero de contacto</string>
+
     <!-- acceptance-search -->
     <string name="main_title">Aceptación</string>
     <string name="sub_title_one">Datos de operación</string>
