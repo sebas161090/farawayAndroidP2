@@ -28,6 +28,9 @@
     <string name="stock_product">0 Unidades</string>
     <string name="contact_number">Numero de contacto</string>
 
+    <!-- Productos Favoritos-->
+    <string name="favorite_products_text">PRODUCTOS FAVORITOS</string>
+
     <!-- acceptance-search -->
     <string name="main_title">Aceptación</string>
     <string name="sub_title_one">Datos de operación</string>

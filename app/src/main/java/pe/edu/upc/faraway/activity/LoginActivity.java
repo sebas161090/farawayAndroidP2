@@ -45,14 +45,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         getSupportActionBar().hide();
 
         bindUI();
+        /*
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String username = editTextUsername.getText().toString();
                 String password = editTextPassword.getText().toString();
-                prepareLogin(username, password);
+                //prepareLogin(username, password);
             }
-        });
+        });*/
+        btnLogin.setOnClickListener(this);
         btnRegistro.setOnClickListener(this);
     }
 
@@ -119,6 +121,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.btnRegistro:
                 startActivity(new Intent(this, RegisterActivity.class));
+                break;
+
+            case R.id.btnLogin:
+                startActivity(new Intent(this, SearchProductActivity.class));
                 break;
         }
     }
