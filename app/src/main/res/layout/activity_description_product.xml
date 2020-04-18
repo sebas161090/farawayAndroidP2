@@ -35,71 +35,66 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/tvProdDescTitle"
+            android:layout_alignParentLeft="true"
             android:text="@string/product_description_title"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/tvProdDescText"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/tvProdDescTitle"
             android:text="@string/product_description_text"/>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvPriceProdText"
+            android:layout_below="@id/tvProdDescText"
+            android:layout_alignParentLeft="true"
+            android:text="@string/price_product_title" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/price_product_title"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="110dp"
-            android:text="@string/stock_product_title" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_below="@id/tvPriceProdText"
+            android:layout_alignParentLeft="true"
             android:text="@string/price_product"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="85dp"
+            android:id="@+id/tvStockProdText"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/tvProdDescText"
+            android:text="@string/stock_product_title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvStockProdQuantity"
+            android:layout_below="@id/tvStockProdText"
+            android:layout_alignParentRight="true"
             android:text="@string/stock_product" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
         <android.widget.Button
             android:id="@+id/btnContacto"
-            android:layout_gravity="bottom|right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/tvStockProdQuantity"
+            android:layout_alignParentRight="true"
             android:text="@string/contact_number"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
