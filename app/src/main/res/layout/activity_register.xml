@@ -76,7 +76,7 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/buttonSubmit"
+        android:id="@+id/btnRegistro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enviar" />
