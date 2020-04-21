@@ -14,6 +14,11 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table cliente(codigo int primary Key AUTOINCREMENT, username text, nombre text, apellidos text, celular text, password text)");
+
+
+        //db.execSQL("INSERT INTO comments (user, comment) VALUES ('Digital Learning','Esto es un comentario insertado usando el método execSQL()')");
+
+
     }
 
     @Override

@@ -1,11 +1,9 @@
 package pe.edu.upc.faraway.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import pe.edu.upc.faraway.R;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -25,27 +23,29 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchProductActivity extends AppCompatActivity {
+import pe.edu.upc.faraway.R;
 
-    private ListView lvItems;
-    ArrayList<Producto> listaProductos;
+public class ProductActivity extends AppCompatActivity {
+
+    private ListView lvtItems;
     private Adaptador adaptador;
+    ArrayList<Producto> listaProductos;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_product);
+        setContentView(R.layout.activity_product);
+
+        lvtItems = (ListView) findViewById(R.id.lvItems);
+       // adaptador = new Adaptador(this,GetArrayItems());
+       // lvtItems.setAdapter(adaptador);
 
 
 
-    }
 
-
-    public void buscar(View v) {
-        EditText txtCriterio = (EditText)findViewById(R.id.txtCriterio);
-        String  criterio = txtCriterio.getText().toString();
-        String url = "http://faraway.atwebpages.com/index.php/productos/"+criterio;
-        final List<Producto> items = new ArrayList<>();
+        String url = "http://faraway.atwebpages.com/index.php/productos";
+        final List<String> items = new ArrayList<>();
 
         StringRequest stringRequest= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -65,19 +65,29 @@ public class SearchProductActivity extends AppCompatActivity {
                         producto.setNombre(nombre);
                         producto.setDescripcion(descripcion);
                         listaProductos.add(producto);
-                        items.add(producto);
+                        items.add(nombre);
                     }
+
+                    String mensaje = listaProductos.get(0).getNombre();
+                    Toast.makeText(ProductActivity.this,mensaje,Toast.LENGTH_SHORT).show();
 
                     //lvItems = (ListView) findViewById(R.id.lvItems);
                     //lstProductos = findViewById(R.id.lvItems)
                     ListView lstProductos = findViewById(R.id.lvItems);
-
+                    adaptador = new Adaptador(ProductActivity.this, listaProductos);
+                    lvtItems.setAdapter(adaptador);
+/*
+                    ArrayAdapter<Producto> adaptador = new ArrayAdapter<Producto>(
+                            ProductActivity.this,
+                            android.R.layout.simple_list_item_1,
+                            items);*/
+/*
                     ArrayAdapter<Producto> adaptador = new ArrayAdapter<>(
                             SearchProductActivity.this,
                             android.R.layout.simple_list_item_1,
                             items);
                     //ASignamos el Adapter al ListView
-                    lstProductos.setAdapter(adaptador);
+                    lstProductos.setAdapter(adaptador);*/
                 } catch (JSONException e) {
                     Log.i("======>", e.getMessage());
                 }
@@ -94,11 +104,21 @@ public class SearchProductActivity extends AppCompatActivity {
         //Enviar solicitud
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
-    }//Fin del Evento Click
 
 
 
+    }
 
+    private ArrayList<Producto> GetArrayItems(){
+
+        ArrayList<Producto> listItems = new ArrayList<>();
+        listItems.add(new Producto(R.drawable.florencia, "Florencia", "Florencia Desc"));
+        listItems.add(new Producto(R.drawable.cayetana, "Cayetana", "Cayetana Desc"));
+        listItems.add(new Producto(R.drawable.serena, "Serena", "Serena Desc"));
+
+        return listItems;
+
+    }
 
 
 
