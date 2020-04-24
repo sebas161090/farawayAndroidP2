@@ -19,6 +19,18 @@
     <!-- Registro-->
     <string name="register_greeting">Registro</string>
 
+    <!-- Registro del producto-->
+    <string name="nombre_producto">Nombre</string>
+    <string name="precio_producto">Precio</string>
+    <string name="stock_producto">Stock</string>
+    <string name="categoria_producto">Categoria</string>
+    <string name="boton_producto">APLICAR CAMBIOS</string>
+
+    <!-- Mapa de tiendas-->
+    <string name="nombre_tienda">Calzados MM</string>
+    <string name="direccion_tienda">Av. Guardia Civil 475 - Chorrillos</string>
+    <string name="boton_tienda">REGRESAR</string>
+
     <!-- Producto Descripcion-->
     <string name="product_description_title">Descripcion</string>
     <string name="product_description_text">Este es el texto de la descripcion del producto texto de la descripcion del producto texto de la descripcion del producto</string>
