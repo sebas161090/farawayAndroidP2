@@ -37,45 +37,45 @@
 
 
     </LinearLayout>
-
-    <!--
-    <SearchView
-        android:id="@+id/txtCriterio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/faraway"
-        android:layout_gravity="center" />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ivProdOne"
-            android:layout_alignParentLeft="true"
-            android:src="@drawable/faraway" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/faraway" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/ivProdOne"
-            android:src="@drawable/faraway" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/ivProdOne"
-            android:src="@drawable/faraway"/>
-    </RelativeLayout>
-    -->
+    <!---->
+       <!--
+       <SearchView
+           android:id="@+id/txtCriterio"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content" />
+       <ImageView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/faraway"
+           android:layout_gravity="center" />
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:paddingLeft="@dimen/activity_horizontal_margin"
+           android:paddingRight="@dimen/activity_horizontal_margin">
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:id="@+id/ivProdOne"
+               android:layout_alignParentLeft="true"
+               android:src="@drawable/faraway" />
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentRight="true"
+               android:src="@drawable/faraway" />
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentLeft="true"
+               android:layout_below="@id/ivProdOne"
+               android:src="@drawable/faraway" />
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentRight="true"
+               android:layout_below="@id/ivProdOne"
+               android:src="@drawable/faraway"/>
+       </RelativeLayout>
+       -->
 </LinearLayout>
