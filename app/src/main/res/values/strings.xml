@@ -117,4 +117,30 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 
+    <!-- Detalle Producto -->
+
+    <string name="btn_grabar">Grabar</string>
+    <string name="btn_retornar">Volver</string>
+    <string name="txt_Description">Descripción</string>
+    <string name="txt_Precio">Precio</string>
+    <string name="txt_Stock">Stock</string>
+    <string name="nombre">Nombre</string>
+    <string name="idProducto">Código</string>
+    <string name="detailProducto">Detalle Producto</string>
+    <string name="title_activity_main_drawer">MainDrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Pedido -->
+    <string name="txt_Pedido">Registrar Pedido</string>
+    <string name="txt_Total">Total</string>
+
+
+    <!-- Menu -->
+    <string name="action_Pedido">Pedidos</string>
+
 </resources>

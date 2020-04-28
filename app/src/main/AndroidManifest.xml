@@ -18,7 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.ProductActivity"></activity>
+        <activity android:name=".activity.PedidoActivity"></activity>
+        <activity android:name=".activity.DetalleProductoActivity" />
+        <activity android:name=".activity.ProductActivity" />
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.SearchProductActivity" />
         <activity android:name=".activity.LoginActivity">
