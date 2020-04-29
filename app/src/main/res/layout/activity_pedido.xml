@@ -55,13 +55,25 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:inputType="number|textPersonName" />
                 </TableRow>
 
-                <Spinner
-                    android:id="@+id/products_spinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_Producto" />
+
+                    <Spinner
+                        android:id="@+id/products_spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                       />
+                </TableRow>
 
                 <Button
                     android:id="@+id/btn_grabar"

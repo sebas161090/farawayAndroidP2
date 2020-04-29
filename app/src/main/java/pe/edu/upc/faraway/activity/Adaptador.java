@@ -49,10 +49,12 @@ public class Adaptador extends BaseAdapter {
         ImageView imgFoto = (ImageView)convertView.findViewById(R.id.imgFoto);
         TextView tvTitulo = (TextView)convertView.findViewById(R.id.tvTitulo);
         TextView tvDescripcion = (TextView)convertView.findViewById(R.id.tvDescripcion);
+        TextView tvPrecio = (TextView)convertView.findViewById(R.id.tvPrecio);
 
         imgFoto.setImageResource(item.getFoto());
         tvTitulo.setText(item.getNombre());
         tvDescripcion.setText(item.getDescripcion());
+        tvPrecio.setText(item.getPrecio().toString());
 
         return convertView;
     }

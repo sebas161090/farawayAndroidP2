@@ -60,33 +60,44 @@ public class DetalleProductoActivity extends AppCompatActivity {
         nombre = (TextView)findViewById(R.id.nombre);
         precio = (TextView)findViewById(R.id.precio);
         stock = (TextView)findViewById(R.id.stock);
-        String url = "http://faraway.atwebpages.com/index.php/productoUpdate";
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Producto Actualizado", Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
 
+        if (!idProducto.getText().toString().isEmpty() && !descripcion.getText().toString().isEmpty() && !nombre.getText().toString().isEmpty() && !precio.getText().toString().isEmpty() && !stock.getText().toString().isEmpty())
+
+        {
+            String url = "http://faraway.atwebpages.com/index.php/productoUpdate";
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Toast.makeText(getApplicationContext(), "Producto Actualizado", Toast.LENGTH_SHORT).show();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
             }
+            ) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String,String> parametro = new HashMap<String, String>();
+                    parametro.put("nombre",nombre.getText().toString());
+                    parametro.put("descripcion",descripcion.getText().toString());
+                    parametro.put("precio",precio.getText().toString());
+                    parametro.put("stock",stock.getText().toString());
+                    parametro.put("idProducto",idProducto.getText().toString());
+
+                    return parametro;
+                }
+            };
+            RequestQueue requestQueue= Volley.newRequestQueue(this);
+            requestQueue.add(stringRequest);
+
+
+        } else {
+            Toast.makeText(this, "Debe registrar todos los campos solicitados", Toast.LENGTH_LONG).show();
         }
-        ) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> parametro = new HashMap<String, String>();
-                parametro.put("nombre",nombre.getText().toString());
-                parametro.put("descripcion",descripcion.getText().toString());
-                parametro.put("precio",precio.getText().toString());
-                parametro.put("stock",stock.getText().toString());
-                parametro.put("idProducto",idProducto.getText().toString());
 
-                return parametro;
-            }
-        };
-        RequestQueue requestQueue= Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+
     }
 
     public void eliminar(View v) {
@@ -108,7 +119,7 @@ public class DetalleProductoActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> parametro = new HashMap<String, String>();
-                parametro.put("id",idProducto.getText().toString());
+                parametro.put("id_producto",idProducto.getText().toString());
 
                 return parametro;
             }

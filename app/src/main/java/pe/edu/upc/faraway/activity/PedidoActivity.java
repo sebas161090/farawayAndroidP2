@@ -2,16 +2,21 @@ package pe.edu.upc.faraway.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.DateTimeKeyListener;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,14 +29,26 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import pe.edu.upc.faraway.R;
 
 public class PedidoActivity extends AppCompatActivity {
 
-    ArrayList<Producto> listaProductos;
+
+    TextView total;
+    Date fecha = Calendar.getInstance().getTime();
+    SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String newDateStr = formatDate.format(fecha);
+    String id_producto, precio;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,24 +64,10 @@ public class PedidoActivity extends AppCompatActivity {
                 try {
                     JSONArray jsonArray = new JSONArray(response);
                     Producto producto = null;
-                    listaProductos = new ArrayList<Producto>();
+                    //listaProductos = new ArrayList<Producto>();
                     for (int i=0; i<jsonArray.length(); i++){
                         JSONObject filas = jsonArray.getJSONObject(i);
-                        items.add(filas.getString("idProducto")  + "|" +   filas.getString("nombre"));
-                        Integer idProducto = filas.getInt("idProducto");
-                        String descripcion = filas.getString("descripcion") ;
-                        String nombre = filas.getString("nombre");
-                        Double precio = filas.getDouble("precio") ;
-                        Integer stock = filas.getInt("stock");
-                        producto = new Producto();
-                        producto.setId(idProducto);
-                        producto.setNombre(nombre);
-                        producto.setDescripcion(descripcion);
-                        producto.setPrecio(precio);
-                        producto.setStock(stock);
-                        listaProductos.add(producto);
-                        //items.add(nombre);
-
+                        items.add(filas.getString("idProducto")  + "-" +   filas.getString("nombre") + "-" + filas.getString("precio"));
                     }
 
                     Spinner spinner = (Spinner) findViewById(R.id.products_spinner);
@@ -75,8 +78,12 @@ public class PedidoActivity extends AppCompatActivity {
                     spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            Toast.makeText(parent.getContext(),
-                                    "Seleccionado: " + parent.getItemAtPosition(position).toString().substring(parent.getItemAtPosition(position).toString().indexOf("|") - 1), Toast.LENGTH_LONG).show();
+
+                            String[] parts = parent.getItemAtPosition(position).toString().split("-");
+                            id_producto = parts[0];
+                            precio = parts[2];
+                            //Toast.makeText(parent.getContext(),
+                            //      parts[0], Toast.LENGTH_LONG).show();
 
                             //String substr=mysourcestring.substring(mysourcestring.indexOf("characterValue"));
                         }
@@ -86,12 +93,6 @@ public class PedidoActivity extends AppCompatActivity {
 
                         }
                     });
-
-
-
-                    //spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
-
-
 
 
                 } catch (JSONException e) {
@@ -111,7 +112,46 @@ public class PedidoActivity extends AppCompatActivity {
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
 
+    }
 
+
+    public void registrar(View v) {
+        total = (TextView)findViewById(R.id.total);
+
+        if (!total.getText().toString().isEmpty())
+        {
+            String url = "http://faraway.atwebpages.com/index.php/pedidos";
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Toast.makeText(getApplicationContext(), "Pedido Registrado", Toast.LENGTH_SHORT).show();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }
+            ) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    SharedPreferences prefs = getSharedPreferences("shared_login_data",   Context.MODE_PRIVATE);
+                    String id_usuarioSession = prefs.getString("id_usuario", "");
+                    Map<String,String> parametro = new HashMap<String, String>();
+                    parametro.put("fecha",newDateStr);
+                    parametro.put("total",total.getText().toString());
+                    parametro.put("id_usuario", id_usuarioSession);
+                    parametro.put("id_producto", id_producto);
+                    parametro.put("precio", precio);
+
+                    return parametro;
+                }
+            };
+            RequestQueue requestQueue= Volley.newRequestQueue(this);
+            requestQueue.add(stringRequest);
+        } else {
+            Toast.makeText(this, "Debe registrar todos los campos solicitados", Toast.LENGTH_LONG).show();
+        }
 
 
 

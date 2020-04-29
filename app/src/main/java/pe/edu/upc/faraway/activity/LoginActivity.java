@@ -43,7 +43,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText clave;
     Button btn_iniciar,btn_reg;
     String criterio = "";
+
     private String resultado="";
+
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +66,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void buscarUsuario () {
         EditText clave = (EditText) findViewById(R.id.editTxtPassword);
         criterio = clave.getText().toString();
-        String url = "http://faraway.atwebpages.com/index.php/usuarios/" + criterio;
+        final String url = "http://faraway.atwebpages.com/index.php/usuarios/" + criterio;
         final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new com.android.volley.Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -71,6 +74,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         jsonObject = response.getJSONObject(i);
+                        SharedPreferences prefs = getSharedPreferences("shared_login_data",   Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("id_usuario", jsonObject.getString("id_usuario"));
+                        editor.putString("nombres", jsonObject.getString("nombres"));
+                        editor.commit();
+
+
                         resultado = jsonObject.getString("nombres");
                     } catch (JSONException e) {
                         //e.printStackTrace();

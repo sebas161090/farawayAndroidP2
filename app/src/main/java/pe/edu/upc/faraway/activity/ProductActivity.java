@@ -2,7 +2,9 @@ package pe.edu.upc.faraway.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -87,17 +89,24 @@ public class ProductActivity extends AppCompatActivity {
                     lstProductos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            SharedPreferences prefs = getSharedPreferences("shared_login_data",   Context.MODE_PRIVATE);
+                            String userName = prefs.getString("nombres", "");
 
-                            Producto producto  = listaProductos.get(position);
-                            Bundle bundle = new Bundle();
-                            bundle.putSerializable("codigo", (Serializable) producto);
-                            Intent intent = new Intent(ProductActivity.this,DetalleProductoActivity.class);
-                            intent.putExtras(bundle);
-                            startActivity(intent);
+                            if (!userName.contains("admin"))  {
+                                Toast.makeText(ProductActivity.this, "No tiene permisos de administrador.", Toast.LENGTH_LONG).show();
+                            } else {
+                                Producto producto  = listaProductos.get(position);
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("codigo", (Serializable) producto);
+                                Intent intent = new Intent(ProductActivity.this,DetalleProductoActivity.class);
+                                intent.putExtras(bundle);
+                                startActivity(intent);
+                            }
+
+
 
                         }
                     });
-
 
 
 /*
@@ -133,34 +142,115 @@ public class ProductActivity extends AppCompatActivity {
 
     }
 
+    public void buscar(View v) {
+        EditText txtCriterio = (EditText)findViewById(R.id.txtCriterio);
+        String  criterio = txtCriterio.getText().toString();
+        String url = "http://faraway.atwebpages.com/index.php/productos/"+criterio;
+
+        lvtItems = (ListView) findViewById(R.id.lvItems);
+        final List<String> items = new ArrayList<>();
+
+        StringRequest stringRequest= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    Producto producto = null;
+                    listaProductos = new ArrayList<Producto>();
+                    for (int i=0; i<jsonArray.length(); i++){
+                        JSONObject filas = jsonArray.getJSONObject(i);
+                        //items.add(object.getString("nombre") + object.getString("descripcion") + " (S/. "+object.getString("precio")+") ");
+                        Integer idProducto = filas.getInt("idProducto");
+                        String descripcion = filas.getString("descripcion") ;
+                        String nombre = filas.getString("nombre");
+                        Double precio = filas.getDouble("precio") ;
+                        Integer stock = filas.getInt("stock");
+                        producto = new Producto();
+                        producto.setId(idProducto);
+                        producto.setNombre(nombre);
+                        producto.setDescripcion(descripcion);
+                        producto.setPrecio(precio);
+                        producto.setStock(stock);
+                        listaProductos.add(producto);
+                        items.add(nombre);
+
+                    }
+
+                    String mensaje = listaProductos.get(0).getNombre();
+                    Toast.makeText(ProductActivity.this,mensaje,Toast.LENGTH_SHORT).show();
+
+                    ListView lstProductos = findViewById(R.id.lvItems);
+                    adaptador = new Adaptador(ProductActivity.this, listaProductos);
+                    lvtItems.setAdapter(adaptador);
+
+
+                    lstProductos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            SharedPreferences prefs = getSharedPreferences("shared_login_data",   Context.MODE_PRIVATE);
+                            String userName = prefs.getString("nombres", "");
+
+                            if (!userName.contains("admin"))  {
+                                Toast.makeText(ProductActivity.this, "No tiene permisos de administrador.", Toast.LENGTH_LONG).show();
+                            } else {
+                                Producto producto  = listaProductos.get(position);
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("codigo", (Serializable) producto);
+                                Intent intent = new Intent(ProductActivity.this,DetalleProductoActivity.class);
+                                intent.putExtras(bundle);
+                                startActivity(intent);
+                            }
+
+                        }
+                    });
+
+
+
+                } catch (JSONException e) {
+                    Log.i("======>", e.getMessage());
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("======>", error.toString());
+                    }
+                }
+        );
+
+        //Enviar solicitud
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+
+    }//Fin del Evento Click
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         switch (item.getItemId()) {
             case R.id.action_Pedido:
                 startActivity(new Intent(this, PedidoActivity.class));
                 break;
+            case R.id.action_Login:
+                startActivity(new Intent(this, LoginActivity.class));
+                break;
 
 
         }
-
-
 
         return super.onOptionsItemSelected(item);
     }
 
     private ArrayList<Producto> GetArrayItems(){
-
         ArrayList<Producto> listItems = new ArrayList<>();
         //listItems.add(new Producto(R.drawable.florencia, "Florencia", "Florencia Desc"));
         //listItems.add(new Producto(R.drawable.cayetana, "Cayetana", "Cayetana Desc"));

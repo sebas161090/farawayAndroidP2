@@ -137,10 +137,12 @@
 
     <!-- Pedido -->
     <string name="txt_Pedido">Registrar Pedido</string>
-    <string name="txt_Total">Total</string>
+    <string name="txt_Total">Cantidad</string>
+    <string name="txt_Producto">Producto</string>
 
 
     <!-- Menu -->
     <string name="action_Pedido">Pedidos</string>
+    <string name="action_Login">Login</string>
 
 </resources>
